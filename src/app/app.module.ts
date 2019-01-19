@@ -3,13 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProjectComponent } from './detail/project/project.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home/home.component';
+import { ProjectDetailComponent } from './home/project-detail/project-detail.component';
+import { NewProjectComponent } from './new-project/new-project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectComponent
+    HomeComponent,
+    ProjectDetailComponent,
+    NewProjectComponent
   ],
   imports: [
     BrowserModule,

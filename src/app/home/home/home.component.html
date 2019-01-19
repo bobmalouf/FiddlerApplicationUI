@@ -1,0 +1,26 @@
+<p>
+  home works!
+</p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <div class="list-group">
+        <a *ngFor="let project of this.projects" href="#" class="list-group-item list-group-item-action active">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{project.projectName}}</h5>
+            <small>{{this.ui.getTimeFromDate(project.created)}}</small>
+          </div>
+          <p class="mb-1">{{project.projectStatus}}</p>
+          <small>{{project.processes.length}} processes</small>
+        </a>
+      </div>
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+  </div>
+</div>
