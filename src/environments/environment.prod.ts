@@ -1,3 +1,10 @@
 export const environment = {
-  production: true
+  production: true,
+  apiConfig: {
+    restURI: "/api",
+    serviceEndpoints: {
+      createProject: "/project",
+      getProject: "/project"
+    }
+  }
 };

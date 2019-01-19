@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiConfig: {
+    restURI: "localhost:8080/api",
+    serviceEndpoints: {
+      createProject: "/project",
+      getProject: "/project"
+    }
+  }
 };
 
 /*
