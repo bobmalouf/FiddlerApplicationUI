@@ -15,10 +15,11 @@ export class AlertService {
     return this.alerts;
   }
   public createAlert(type: AlertType, alertText: string, dismissable: boolean): void {
-    this.alerts.unshift(new Alert(type, alertText, dismissable))
+    this.alerts.unshift(new Alert(type, alertText, false))
     setTimeout(() => {
       this.alerts.pop();
     }, 5000);
     
   }
+
 }

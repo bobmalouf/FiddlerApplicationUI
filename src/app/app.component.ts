@@ -10,6 +10,8 @@ import { AlertService } from './shared/services/alert.service';
 export class AppComponent{
   title = 'FiddlerApplicationUI';
 
+  public expand: boolean;
+
   constructor(public alertService: AlertService){
     
   }
