@@ -1,9 +1,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-2">
+      <div class="row" style="padding:0">
+        <div class="col-6">
+          <div class="btn btn-sm btn-block"  (click)="this.allProjects = false" [ngClass]="!this.allProjects ? 'btn-primary' : 'btn-outline-primary'">Open</div>
+        </div>
+
+        <div class="col-6">
+          <div class="btn btn-sm btn-block" (click)="this.allProjects = true" [ngClass]="this.allProjects ? 'btn-primary' : 'btn-outline-primary'">All</div>
+        </div>
+      </div>
       <div class="list-group">
-        <a *ngFor="let project of this.projects; let i = index" [routerLink]="project.projectId"
-        routerLinkActive="router-link-active"  href="#" class="list-group-item list-group-item-action" [ngClass]="{'active': project === this.getActivatedProject()}">
+        <a *ngFor="let project of this.getProjects(); let i = index" [routerLink]="project.projectId" routerLinkActive="router-link-active"
+          href="#" class="list-group-item list-group-item-action" [ngClass]="{'active': project === this.getActivatedProject()}">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{project.projectName}}</h5>
           </div>
@@ -14,15 +23,15 @@
       </div>
     </div>
     <div class="col-sm" *ngIf="!this.getActivatedProject()">
-        <div class="jumbotron">
-            <div class="container">
-              <h1 class="display-4">Fiddler Application</h1>
-              <p class="lead">Please select a project on the left.</p>
-            </div>
-          </div>
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-4">Fiddler Application</h1>
+          <p class="lead">Please select a project on the left.</p>
+        </div>
       </div>
+    </div>
     <div class="col-sm" *ngIf="this.getActivatedProject()">
-      <router-outlet></router-outlet>
+      <router-outlet (refresh)="this.getProjects()"></router-outlet>
     </div>
   </div>
 </div>

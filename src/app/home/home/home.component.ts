@@ -12,14 +12,19 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   public projects: Project[] = [];
+  public allProjects: boolean = false;
 
   constructor(private projectService: ProjectService, public ui: UiHelperService, private router: Router){}
 
   ngOnInit(): void {
-    this.getProjects();
-    
+    this.getProjectsFromService();
   }
-  private getProjects(): void {
+
+  public getProjects(): Project[] {
+    return this.projects.filter(a => this.allProjects ? true : a.projectStatus !== 'Closed' || a == this.getActivatedProject());
+  }
+
+  private getProjectsFromService(): void {
     this.projectService.getProjects().subscribe(a => this.projects = a);
   }
 

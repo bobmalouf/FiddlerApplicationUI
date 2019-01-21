@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from 'src/app/model/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { UiHelperService } from 'src/app/shared/services/ui-helper.service';
@@ -18,6 +18,8 @@ export class ProjectDetailComponent implements OnInit {
 
 
   @Input() project: Project;
+  @Output() refresh = new EventEmitter<boolean>();
+  private projectClosed: boolean;
 
   constructor(private modal: NgbModal,
     private projectService: ProjectService,
@@ -30,7 +32,16 @@ export class ProjectDetailComponent implements OnInit {
     });
   }
   private getProject(): void {
-    this.projectService.getProject(this.router.url.split("/")[2]).subscribe(a => this.project = a);
+    this.projectService.getProject(this.router.url.split("/")[2]).subscribe(a => {
+      if(!this.project || this.project.projectId !== a.projectId){
+        a.projectStatus == 'Closed' ? this.projectClosed = true : this.projectClosed = false;
+      }
+      this.project = a;
+      if(!this.projectClosed && a.projectStatus == 'Closed'){
+        location.reload();
+      }
+    
+    });
   }
 
   public selectTask(task: Task): void {
@@ -38,17 +49,19 @@ export class ProjectDetailComponent implements OnInit {
     ref.componentInstance.task = task;
     ref.componentInstance.ref = ref;
     ref.result.then(a => {
-      this.alertService.createAlert(AlertType.Primary, "success", true);
+      (a as Task).taskStatus = "Closed";
       let proc = this.project.processes.find(b => b.tasks.includes(a));
       this.projectService.updateTask(a, this.project.projectId,
         this.project.processes.indexOf(proc), proc.tasks.indexOf(a)).subscribe(() => {
           this.getProject();
+          this.alertService.createAlert(AlertType.Primary, "Task Updated", true);
+          this.refresh.emit(true);
+
         }, () => {
-          this.alertService.createAlert(AlertType.Danger, "put error", true);
+          this.alertService.createAlert(AlertType.Danger, "Error in updating task", true);
 
         })
     }, () => {
-      this.alertService.createAlert(AlertType.Danger, "warn", true);
 
     })
   }

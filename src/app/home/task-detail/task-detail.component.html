@@ -1,11 +1,11 @@
 <div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+  <h5 class="modal-title" id="exampleModalLabel">{{task.taskTitle}}</h5>
 
 </div>
 <div class="modal-body">
-  ...
+    <h6>{{task.taskDescription}}</h6>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="this.closeModal()">Close</button>
-  <button type="button" class="btn btn-primary" (click)="this.saveModal()">Save changes</button>
+  <button type="button" *ngIf="task.taskStatus !== 'Closed'" class="btn btn-primary" (click)="this.saveModal()">Complete</button>
 </div>

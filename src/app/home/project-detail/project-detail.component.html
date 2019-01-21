@@ -38,7 +38,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let task of process.tasks">
-                  <th scope="row"><a (click)="this.selectTask(task)">{{task.taskTitle}}</a></th>
+                  <th scope="row"><a style="cursor: pointer; color: darkblue" (click)="this.selectTask(task)">{{task.taskTitle}}</a></th>
                   <td>{{task.taskDescription}}</td>
                   <td>{{task.taskStatus}}</td>
                 </tr>
