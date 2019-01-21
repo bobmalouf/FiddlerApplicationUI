@@ -1,13 +1,34 @@
-<p>
-  project-detail works! {{this.project?.projectId}}
-</p>
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      {{this.project?.projectName}}
-    </div>
-    <div class="col">
-      1
+      <h2>{{this.project?.projectName}}</h2>
+      <div class=" col-md-9 col-lg-9 ">
+        <table class="table table-user-information">
+          <tbody>
+              <tr>
+                  <td>Id:</td>
+                  <td>{{this.project?.projectId}}</td>
+                </tr>
+            <tr>
+              <td>Status:</td>
+              <td>{{this.project?.projectStatus}}</td>
+            </tr>
+            <tr>
+              <td>Type:</td>
+              <td>{{this.project?.projectType}}</td>
+            </tr>
+            <tr>
+                <td>Created:</td>
+                <td>{{this.project?.created | date:'short'}}</td>
+              </tr>
+
+          
+
+
+
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="col">
       1

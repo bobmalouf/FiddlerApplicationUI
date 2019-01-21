@@ -13,7 +13,15 @@
         </a>
       </div>
     </div>
-    <div class="col-sm">
+    <div class="col-sm" *ngIf="!this.getActivatedProject()">
+        <div class="jumbotron">
+            <div class="container">
+              <h1 class="display-4">Fluid jumbotron</h1>
+              <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            </div>
+          </div>
+      </div>
+    <div class="col-sm" *ngIf="this.getActivatedProject()">
       <router-outlet></router-outlet>
     </div>
   </div>
