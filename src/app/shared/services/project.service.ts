@@ -18,4 +18,9 @@ export class ProjectService {
       return a.map(b => { b.created = new Date(b.created); return b; })
     }));
   }
+  public getProject(id: String): Observable<Project> {
+    return this.httpService.get<Project>(environment.apiConfig.serviceEndpoints.getProject + '/' + id).pipe(map(b => {
+       b.created = new Date(b.created); return b; })
+    );
+  }
 }
