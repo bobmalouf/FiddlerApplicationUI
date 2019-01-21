@@ -4,7 +4,8 @@ export const environment = {
     restURI: "/api",
     serviceEndpoints: {
       createProject: "/project",
-      getProject: "/project"
+      getProject: "/project",
+      validateJSON: "/json"
     }
   }
 };

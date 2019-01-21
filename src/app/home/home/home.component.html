@@ -10,7 +10,7 @@
           <div class="btn btn-sm btn-block" (click)="this.allProjects = true" [ngClass]="this.allProjects ? 'btn-primary' : 'btn-outline-primary'">All</div>
         </div>
       </div>
-      <div class="list-group">
+      <div style="margin-top:10px"  class="list-group">
         <a *ngFor="let project of this.getProjects(); let i = index" [routerLink]="project.projectId" routerLinkActive="router-link-active"
           href="#" class="list-group-item list-group-item-action" [ngClass]="{'active': project === this.getActivatedProject()}">
           <div class="d-flex w-100 justify-content-between">
@@ -20,6 +20,11 @@
           <small>Created {{this.ui.getTimeFromDate(project.created)}}</small>
 
         </a>
+        <div style="margin-top:10px" *ngIf="this.getProjects().length == 0" class="card">
+            <div class="card-body">
+              No open projects
+            </div>
+          </div>
       </div>
     </div>
     <div class="col-sm" *ngIf="!this.getActivatedProject()">
