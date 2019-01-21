@@ -16,4 +16,7 @@ export class HttpService {
   public post<T>(url: string, body: any): Observable<T> {
     return this.httpClient.post<T>(environment.apiConfig.restURI +  url, body);
   }
+  public put<T>(url: string, body: any): Observable<T> {
+    return this.httpClient.post<T>(environment.apiConfig.restURI +  url, body);
+  }
 }

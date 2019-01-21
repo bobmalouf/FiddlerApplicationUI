@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  public projects: Project[];
+  public projects: Project[] = [];
 
   constructor(private projectService: ProjectService, public ui: UiHelperService, private router: Router){}
 

@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="col-8">
-      <div *ngFor="let process of project.processes" class="row">
+      <div *ngFor="let process of project?.processes" class="row">
         <h4>{{process.category}}</h4>
           <table class="table">
               <thead>
@@ -34,15 +34,13 @@
                   <th scope="col">Title</th>
                   <th scope="col">Description</th>
                   <th scope="col">Status</th>
-                  <th scope="col">Link</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let task of process.tasks">
-                  <th scope="row">{{task.taskTitle}}</th>
+                  <th scope="row"><a (click)="this.selectTask(task)">{{task.taskTitle}}</a></th>
                   <td>{{task.taskDescription}}</td>
                   <td>{{task.taskStatus}}</td>
-                  <td><a href="{{task.applicationURI}}">{{task.applicationURI}}</a></td>
                 </tr>
             </table>
 

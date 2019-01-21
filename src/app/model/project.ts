@@ -6,6 +6,6 @@ export class Project {
     projectType: string;
     projectName: string;
     projectStatus: string;
-    processes: Process[];
+    processes: Process[] = [];
     created: Date;
 }
