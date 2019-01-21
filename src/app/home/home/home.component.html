@@ -6,18 +6,18 @@
         routerLinkActive="router-link-active"  href="#" class="list-group-item list-group-item-action" [ngClass]="{'active': project === this.getActivatedProject()}">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{project.projectName}}</h5>
-            <small>{{this.ui.getTimeFromDate(project.created)}}</small>
           </div>
-          <p class="mb-1">{{project.projectStatus}}</p>
-          <small>{{project.processes.length}} processes</small>
+          <p class="mb-1">Status: {{project.projectStatus}}</p>
+          <small>Created {{this.ui.getTimeFromDate(project.created)}}</small>
+
         </a>
       </div>
     </div>
     <div class="col-sm" *ngIf="!this.getActivatedProject()">
         <div class="jumbotron">
             <div class="container">
-              <h1 class="display-4">Fluid jumbotron</h1>
-              <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+              <h1 class="display-4">Fiddler Application</h1>
+              <p class="lead">Please select a project on the left.</p>
             </div>
           </div>
       </div>

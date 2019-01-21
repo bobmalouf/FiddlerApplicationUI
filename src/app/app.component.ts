@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from './shared/services/alert.service';
 
 
 @Component({
@@ -8,5 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent{
   title = 'FiddlerApplicationUI';
+
+  constructor(public alertService: AlertService){
+    
+  }
  
 }

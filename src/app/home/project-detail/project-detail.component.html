@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col">
+    <div class="col-4">
       <h2>{{this.project?.projectName}}</h2>
       <div class=" col-md-9 col-lg-9 ">
         <table class="table table-user-information">
           <tbody>
-              <tr>
-                  <td>Id:</td>
-                  <td>{{this.project?.projectId}}</td>
-                </tr>
+            <tr>
+              <td>Id:</td>
+              <td>{{this.project?.projectId}}</td>
+            </tr>
             <tr>
               <td>Status:</td>
               <td>{{this.project?.projectStatus}}</td>
@@ -18,20 +18,36 @@
               <td>{{this.project?.projectType}}</td>
             </tr>
             <tr>
-                <td>Created:</td>
-                <td>{{this.project?.created | date:'short'}}</td>
-              </tr>
-
-          
-
-
-
+              <td>Created:</td>
+              <td>{{this.project?.created | date:'short'}}</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="col">
-      1
+    <div class="col-8">
+      <div *ngFor="let process of project.processes" class="row">
+        <h4>{{process.category}}</h4>
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let task of process.tasks">
+                  <th scope="row">{{task.taskTitle}}</th>
+                  <td>{{task.taskDescription}}</td>
+                  <td>{{task.taskStatus}}</td>
+                  <td><a href="{{task.applicationURI}}">{{task.applicationURI}}</a></td>
+                </tr>
+            </table>
+
+      </div>
+
     </div>
   </div>
 </div>

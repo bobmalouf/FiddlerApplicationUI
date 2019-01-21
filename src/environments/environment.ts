@@ -8,7 +8,8 @@ export const environment = {
     restURI: "localhost:8080/api",
     serviceEndpoints: {
       createProject: "/project",
-      getProject: "/project"
+      getProject: "/project",
+      validateJSON: "/json"
     }
   }
 };

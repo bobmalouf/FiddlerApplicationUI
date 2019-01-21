@@ -1,3 +1,20 @@
-<p>
-  new-project works!
-</p>
+<div class="container">
+    <h1>Create New Project</h1>
+    <form [formGroup]="this.newProjectForm">
+      <div class="form-group">
+        <label for="url">JSON URL</label>
+        <input type="text" class="form-control" id="url" 
+        formControlName="jsonURL" required>
+      </div>
+
+      <button type="submit" class="btn btn-secondary" (click)="this.previewJSON()">Preview</button>
+      <button *ngIf="this.sampleJSON" style="margin-left: 20px;" type="submit" 
+      class="btn btn-success" (click)="this.createProject()">Submit</button>
+  </form>
+
+  <div *ngIf="this.sampleJSON" class="sample">
+      <label>Preview (Read Only)</label>
+  <pre class="json">{{this.sampleJSON | json}}</pre>
+  </div>
+
+</div>
