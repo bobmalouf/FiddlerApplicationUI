@@ -30,6 +30,12 @@ RUN ng build --prod
 # base image
 FROM nginx:1.13.9-alpine
 
+# copy conf file
+COPY default.conf /etc/nginx/conf.d/
+
+# clear default nginx stuff
+RUN rm -rf /usr/share/nginx/html/*
+
 # copy artifact build from the 'build environment'
 COPY --from=builder /usr/src/app/dist/* /usr/share/nginx/html
 
