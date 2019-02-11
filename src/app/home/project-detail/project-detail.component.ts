@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Project } from 'src/app/model/project';
+import { ProjectInformation, Task } from 'src/app/model/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { UiHelperService } from 'src/app/shared/services/ui-helper.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Task } from 'src/app/model/task';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TaskDetailComponent } from '../task-detail/task-detail.component';
 import { AlertService } from 'src/app/shared/services/alert.service';
@@ -17,7 +16,7 @@ import { AlertType } from 'src/app/shared/enum/alert-type.enum';
 export class ProjectDetailComponent implements OnInit {
 
 
-  @Input() project: Project;
+  @Input() project: ProjectInformation;
   @Output() refresh = new EventEmitter<boolean>();
   private projectClosed: boolean;
 
@@ -50,7 +49,7 @@ export class ProjectDetailComponent implements OnInit {
     ref.componentInstance.ref = ref;
     ref.result.then(a => {
       (a as Task).taskStatus = "Closed";
-      let proc = this.project.processes.find(b => b.tasks.includes(a));
+      let proc = this.project.processesArray.find(b => b.tasks.includes(a));
       this.projectService.updateTask(a, this.project.projectId,
         this.project.processes.indexOf(proc), proc.tasks.indexOf(a)).subscribe(() => {
           this.getProject();

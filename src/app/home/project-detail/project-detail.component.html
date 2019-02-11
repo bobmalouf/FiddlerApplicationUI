@@ -19,15 +19,15 @@
             </tr>
             <tr>
               <td>Created:</td>
-              <td>{{this.project?.created | date:'short'}}</td>
+              <!-- <td>{{this.project?.created | date:'short'}}</td> -->
             </tr>
           </tbody>
         </table>
       </div>
     </div>
     <div class="col-xl-8" style="padding-top:10px">
-      <div *ngFor="let process of project?.processes" class="row">
-        <h4>{{process.category}}</h4>
+      <div *ngFor="let process of project?.processesArray" class="row">
+        <h4>{{process.subProcessCategory}}</h4>
           <table class="table">
               <thead>
                 <tr>
@@ -37,7 +37,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let task of process.tasks">
+                <tr *ngFor="let task of process.subProcessTasks">
                   <th scope="row"><a style="cursor: pointer; color: darkblue" (click)="this.selectTask(task)">{{task.taskTitle}}</a></th>
                   <td>{{task.taskDescription}}</td>
                   <td>{{task.taskStatus}}</td>

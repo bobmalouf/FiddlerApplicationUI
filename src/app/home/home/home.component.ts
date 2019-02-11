@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Project } from 'src/app/model/project';
+import { ProjectInformation } from 'src/app/model/project';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { UiHelperService } from 'src/app/shared/services/ui-helper.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  public projects: Project[] = [];
+  public projects: ProjectInformation[] = [];
   public allProjects: boolean = false;
 
   constructor(private projectService: ProjectService, public ui: UiHelperService, private router: Router){}
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     this.getProjectsFromService();
   }
 
-  public getProjects(): Project[] {
+  public getProjects(): ProjectInformation[] {
     return this.projects.filter(a => this.allProjects ? true : a.projectStatus !== 'Closed' || a == this.getActivatedProject());
   }
 
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     this.projectService.getProjects().subscribe(a => this.projects = a);
   }
 
-  public getActivatedProject(): Project {
+  public getActivatedProject(): ProjectInformation {
     if(this.router.url.split("/").length > 2){
       return this.projects.filter(a => a.projectId === this.router.url.split("/")[2])[0];
     } else  {

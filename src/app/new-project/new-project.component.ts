@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { AlertService } from '../shared/services/alert.service';
 import { AlertType } from '../shared/enum/alert-type.enum';
 import { Router } from '@angular/router';
-import { Project } from '../model/project';
+import { ProjectInformation } from '../model/project';
 
 @Component({
   selector: 'app-new-project',
@@ -42,15 +42,16 @@ export class NewProjectComponent implements OnInit {
   }
 
   public createProject(): void {
-    this.httpService.post<Project>(environment.apiConfig.serviceEndpoints.createProject, {
+    this.httpService.post<ProjectInformation>(environment.apiConfig.serviceEndpoints.createProject, {
       "jsonURL": this.newProjectForm.controls['jsonURL'].value
     }).subscribe(a => {
       this.alertService.createAlert(AlertType.Success, "Project Created", true);
       this.router.navigateByUrl('/home/' + a.projectId);
 
-    }), () => {
-      this.alertService.createAlert(AlertType.Danger, "Error creating project", true);
-    }
+    }, err => {
+      console.log(err)
+      this.alertService.createAlert(AlertType.Danger, err.error.message, true);
+    })
   }
 
 }
