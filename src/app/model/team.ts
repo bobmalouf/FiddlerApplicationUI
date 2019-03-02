@@ -25,7 +25,6 @@ export interface ProjectTeam {
    * List of team roles and people assigned to that role
    */
   teamRoleList?: TeamRoleObject[];
-  [k: string]: any;
 }
 /**
  * Team roles and people assigned to role
@@ -38,32 +37,5 @@ export interface TeamRoleObject {
   /**
    * List of people assigned to role and dates they began and ended in role
    */
-  teamMembersInRole?: TeamMemberObject[];
-  [k: string]: any;
-}
-/**
- * People on a team and dates on the team
- */
-export interface TeamMemberObject {
-  /**
-   * Name of person on team
-   */
-  teamMemberName?: string;
-  /**
-   * ID of person on team
-   */
-  teamMemberID?: string;
-  /**
-   * Date person joins team
-   */
-  teamMemberStartDate?: {
-    [k: string]: any;
-  };
-  /**
-   * Date person leaves team
-   */
-  teamMemberEndDate?: {
-    [k: string]: any;
-  };
-  [k: string]: any;
+  teamMembersInRole?: string[];
 }

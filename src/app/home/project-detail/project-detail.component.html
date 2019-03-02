@@ -19,7 +19,7 @@
             </tr>
             <tr>
               <td>Created:</td>
-              <!-- <td>{{this.project?.created | date:'short'}}</td> -->
+              <td>{{this.project?.created}}</td>
             </tr>
           </tbody>
         </table>
@@ -40,7 +40,7 @@
                 <tr *ngFor="let task of process.subProcessTasks">
                   <th scope="row"><a style="cursor: pointer; color: darkblue" (click)="this.selectTask(task)">{{task.taskTitle}}</a></th>
                   <td>{{task.taskDescription}}</td>
-                  <td>{{task.taskStatus}}</td>
+                  <td>{{task.taskStatusHistory[task.taskStatusHistory.length-1].statusValue | titlecase}}</td>
                 </tr>
             </table>
 

@@ -34,6 +34,10 @@ export interface ProjectInformation {
    */
   teamID?: string;
   /**
+   * Date the project is created
+   */
+  created?: string;
+  /**
    * Set of categorized subprocesses
    */
   processesArray?: {
@@ -45,9 +49,7 @@ export interface ProjectInformation {
      * Associated tasks that define a subprocess
      */
     subProcessTasks?: Task[];
-    [k: string]: any;
   }[];
-  [k: string]: any;
 }
 /**
  * Basic task data
@@ -85,7 +87,6 @@ export interface Task {
      * URI to access reference item
      */
     referenceURI?: string;
-    [k: string]: any;
   }[];
   /**
    * URI for supporting applications to help complete task. Value is defined during process tempalte creation.
@@ -102,12 +103,11 @@ export interface Task {
     /**
      * Date status of the task was achieved
      */
-    statusDate?: number;
+    statusDate?: string;
     /**
      * Party responsible for setting status value
      */
     statusOwner?: string;
-    [k: string]: any;
   }[];
   /**
    * Organizational roles responsible for completing this task.
@@ -117,5 +117,4 @@ export interface Task {
    * Individuals  responsible for completing this task.
    */
   taskOwners?: string[];
-  [k: string]: any;
 }

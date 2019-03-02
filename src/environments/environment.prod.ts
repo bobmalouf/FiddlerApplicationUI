@@ -3,9 +3,19 @@ export const environment = {
   apiConfig: {
     restURI: "/api",
     serviceEndpoints: {
-      createProject: "/project",
-      getProject: "/project",
-      validateJSON: "/json"
+      projectService: {
+        getProject: "/project",
+        getProjects: "/project",
+        createProject: "/project"
+      },
+      verifyService: {
+        verifyJSON: "/verify"
+      },
+      teamService: {
+        getTeam: "/team",
+        getTeams: "/team",
+        createTeam: "/team"
+      },
     }
   }
 };

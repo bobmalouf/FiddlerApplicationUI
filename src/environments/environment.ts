@@ -7,9 +7,14 @@ export const environment = {
   apiConfig: {
     restURI: "localhost:8080/api",
     serviceEndpoints: {
-      createProject: "/project",
-      getProject: "/project",
-      validateJSON: "/json"
+      projectService: {
+        getProject: "/project",
+        getProjects: "/project",
+        createProject: "/project"
+      },
+      verifyService: {
+        verifyJSON: "/verify"
+      },
     }
   }
 };

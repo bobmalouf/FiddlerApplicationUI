@@ -7,5 +7,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="this.closeModal()">Cancel</button>
-  <button type="button" *ngIf="task.taskStatus !== 'Closed'" class="btn btn-primary" (click)="this.saveModal()">Complete Task</button>
+  <button type="button" *ngIf="task.taskStatusHistory[task.taskStatusHistory.length-1].statusValue !== 'COMPLETED'" class="btn btn-primary" (click)="this.saveModal()">Complete Task</button>
 </div>

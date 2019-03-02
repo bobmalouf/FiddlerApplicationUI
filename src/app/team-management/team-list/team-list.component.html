@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2">
+      <div style="margin-top:10px"  class="list-group">
+        <a *ngFor="let team of this.teams; let i = index" [routerLink]="team.teamId" routerLinkActive="router-link-active"
+          href="#" class="list-group-item list-group-item-action" [ngClass]="{'active': team === this.getActivatedTeam()}">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{team.teamDescription}}</h5>
+          </div>
+          <!-- <p class="mb-1">Status: {{project.projectStatus}}</p> -->
+          <!-- <small>Created {{this.ui.getTimeFromDate(project.created)}}</small> -->
+
+        </a>
+        <div style="margin-top:10px" *ngIf="this.teams.length == 0" class="card">
+            <div class="card-body">
+              No teams
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-sm" *ngIf="!this.getActivatedTeam()">
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-4">Team Managemenet</h1>
+          <p class="lead">Please select a team</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm" *ngIf="this.getActivatedTeam()">
+      <router-outlet (refresh)="this.getTeamsFromService()"></router-outlet>
+    </div>
+  </div>
+</div>

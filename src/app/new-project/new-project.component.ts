@@ -2,7 +2,7 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { HttpService } from '../shared/services/http.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlertService } from '../shared/services/alert.service';
 import { AlertType } from '../shared/enum/alert-type.enum';
 import { Router } from '@angular/router';
@@ -29,22 +29,22 @@ export class NewProjectComponent implements OnInit {
   }
 
   public previewJSON() {
-    this.httpService.post<string>(environment.apiConfig.serviceEndpoints.validateJSON,
-      {
-        "jsonURL": this.newProjectForm.controls['jsonURL'].value
-      }).subscribe(a => {
+    this.httpService.post<string>(environment.apiConfig.serviceEndpoints.verifyService.verifyJSON + "/StandardProjectInformationSchema",
+      
+        this.newProjectForm.controls['jsonURL'].value
+      ).subscribe(a => {
         this.sampleJSON = a;
         this.alertService.createAlert(AlertType.Primary, "JSON retrieved", true);
 
-      }, () => {
-        this.alertService.createAlert(AlertType.Danger, "Error retrieving JSON", true);
+      }, err => {
+        this.alertService.createAlert(AlertType.Danger, (err as HttpErrorResponse).error, true);
       })
   }
 
   public createProject(): void {
-    this.httpService.post<ProjectInformation>(environment.apiConfig.serviceEndpoints.createProject, {
-      "jsonURL": this.newProjectForm.controls['jsonURL'].value
-    }).subscribe(a => {
+    this.httpService.post<ProjectInformation>(environment.apiConfig.serviceEndpoints.projectService.createProject, 
+      this.newProjectForm.controls['jsonURL'].value
+    ).subscribe(a => {
       this.alertService.createAlert(AlertType.Success, "Project Created", true);
       this.router.navigateByUrl('/home/' + a.projectId);
 

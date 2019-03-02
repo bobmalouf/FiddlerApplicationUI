@@ -11,6 +11,7 @@ import { NewProjectComponent } from './new-project/new-project.component';
 import { TaskDetailComponent } from './home/task-detail/task-detail.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { TeamListComponent } from './team-management/team-list/team-list.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HomeComponent,
     ProjectDetailComponent,
     NewProjectComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    TeamListComponent
   ],
   imports: [
     BrowserModule,

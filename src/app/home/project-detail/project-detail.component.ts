@@ -48,10 +48,9 @@ export class ProjectDetailComponent implements OnInit {
     ref.componentInstance.task = task;
     ref.componentInstance.ref = ref;
     ref.result.then(a => {
-      (a as Task).taskStatus = "Closed";
-      let proc = this.project.processesArray.find(b => b.tasks.includes(a));
-      this.projectService.updateTask(a, this.project.projectId,
-        this.project.processes.indexOf(proc), proc.tasks.indexOf(a)).subscribe(() => {
+      let proc = this.project.processesArray.find(b => b.subProcessTasks.includes(a));
+      this.projectService.completeTask(this.project.projectId,
+        this.project.processesArray.indexOf(proc), proc.subProcessTasks.indexOf(a)).subscribe(() => {
           this.getProject();
           this.alertService.createAlert(AlertType.Primary, "Task Updated", true);
           this.refresh.emit(true);
