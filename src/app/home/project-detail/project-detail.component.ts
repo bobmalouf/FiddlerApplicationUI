@@ -7,6 +7,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TaskDetailComponent } from '../task-detail/task-detail.component';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { AlertType } from 'src/app/shared/enum/alert-type.enum';
+import { TeamRoleObject } from 'src/app/model/team';
+import { RoleDetailComponent } from '../role-detail/role-detail.component';
+import { TeamMember } from 'src/app/model/teamMember';
 
 @Component({
   selector: 'app-project-detail',
@@ -51,6 +54,26 @@ export class ProjectDetailComponent implements OnInit {
       let proc = this.project.processesArray.find(b => b.subProcessTasks.includes(a));
       this.projectService.completeTask(this.project.projectId,
         this.project.processesArray.indexOf(proc), proc.subProcessTasks.indexOf(a)).subscribe(() => {
+          this.getProject();
+          this.alertService.createAlert(AlertType.Primary, "Task Updated", true);
+          this.refresh.emit(true);
+
+        }, () => {
+          this.alertService.createAlert(AlertType.Danger, "Error in updating task", true);
+
+        })
+    }, () => {
+
+    })
+  }
+  public editRole(teamRoleObject: TeamRoleObject): void {
+    let ref = this.modal.open(RoleDetailComponent);
+    ref.componentInstance.teamRoleObject = teamRoleObject;
+    ref.componentInstance.ref = ref;
+    ref.result.then(a => {
+      let roleIndex = this.project.team.teamRoleList[this.project.team.teamRoleList.indexOf(teamRoleObject)]
+      this.projectService.addPersonToRole(this.project.projectId,
+        this.project.team.teamRoleList.indexOf(roleIndex), (a as TeamMember).teamMemberID).subscribe(() => {
           this.getProject();
           this.alertService.createAlert(AlertType.Primary, "Task Updated", true);
           this.refresh.emit(true);

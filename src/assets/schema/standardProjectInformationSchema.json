@@ -31,10 +31,10 @@
 			"type": "string",
 			"$comment": "This value is defined during creation of a project template."
 		},
-		"teamID": {
-			"description": "ID of the project team created for this project",
-			"type": "string",
-			"$comment": "This value is defined when a project is instantiated, using the instantiated teamID."
+		"team": {
+			"description": "project team created for this project",
+			"$ref":"standardTeamSchema.json",
+			"$comment": "This value is defined when a project is instantiated."
 		},
 		"created": {
 			"description": "Date the project is created",

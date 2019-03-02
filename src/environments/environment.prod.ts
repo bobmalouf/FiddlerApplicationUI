@@ -16,6 +16,11 @@ export const environment = {
         getTeams: "/team",
         createTeam: "/team"
       },
+      peopleService: {
+        getPeople: "/person",
+        getPerson: "/person",
+        createPerson: "/person"
+      },
     }
   }
 };

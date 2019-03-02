@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <button (click)="this.createPerson()">Add New Person</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let person of this.allPeople">
+        <td>{{person.teamMemberName}}</td>
+        <td>{{person.teamMemberStartDate}}</td>
+        <td>{{person.teamMemberEndDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

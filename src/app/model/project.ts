@@ -29,10 +29,7 @@ export interface ProjectInformation {
    * URI of the project team template associated with this type of project
    */
   teamTemplateURI?: string;
-  /**
-   * ID of the project team created for this project
-   */
-  teamID?: string;
+  team?: ProjectTeam;
   /**
    * Date the project is created
    */
@@ -49,6 +46,24 @@ export interface ProjectInformation {
      * Associated tasks that define a subprocess
      */
     subProcessTasks?: Task[];
+  }[];
+}
+/**
+ * project team created for this project
+ */
+export interface ProjectTeam {
+  /**
+   * List of team roles and people assigned to that role
+   */
+  teamRoleList?: {
+    /**
+     * Name of role
+     */
+    teamRole?: string;
+    /**
+     * List of people assigned to role and dates they began and ended in role
+     */
+    teamMembersInRole?: string[];
   }[];
 }
 /**

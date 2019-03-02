@@ -4,6 +4,7 @@ import { HttpService } from './http.service';
 import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import {  ProjectTeam} from "src/app/model/team";
 
 
 @Injectable({
@@ -24,6 +25,12 @@ export class ProjectService {
       b.created = new Date(b.created).toDateString(); return b;
     })
     );
+  }
+
+  public addPersonToRole(projectId: String, roleIndex: number, personId: String): Observable<ProjectTeam> {
+    return this.httpService.post<ProjectTeam>(environment.apiConfig.serviceEndpoints.projectService.getProject + '/' + projectId + '/team/' + 
+    roleIndex + '/add', personId);
+    // return of(null);
   }
   public updateTask(task: Task, projectId: String, processId: number, taskId: number): Observable<Task> {
     console.log(projectId + ' - ' + processId + ' = ' + taskId)

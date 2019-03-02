@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home/home.component';
 import { NewProjectComponent } from './new-project/new-project.component';
 import { ProjectDetailComponent } from './home/project-detail/project-detail.component';
-import { TeamListComponent } from './team-management/team-list/team-list.component';
+import { PeopleComponent } from './people/people.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,8 +14,7 @@ const routes: Routes = [
     ]
   },
   { path: 'newProject', component: NewProjectComponent },
-  { path: 'teamManagement', component: TeamListComponent }
-
+  {path: 'people', component: PeopleComponent}
 ];
 
 @NgModule({

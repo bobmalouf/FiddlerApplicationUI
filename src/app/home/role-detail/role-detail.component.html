@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{this.teamRoleObject.teamRole}}</h5>
+
+</div>
+<div class="modal-body">
+    <h6 *ngFor="let person of this.teamMembers">{{person.teamMemberName}}</h6>
+    <button *ngIf="!this.addMode" (click)="this.addMode = true">+</button>
+    <div *ngIf="this.addMode"  ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{this.selectedPerson ? this.selectedPerson.teamMemberName : "Select Person"}}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
+          <button (click)="this.selectedPerson = people" *ngFor="let people of this.allPeople" class="dropdown-item">{{people.teamMemberName}}</button>
+        </div>
+      </div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="this.closeModal()">Cancel</button>
+  <button type="button" class="btn btn-primary" (click)="this.saveModal()">Complete Task</button>
+</div>

@@ -15,6 +15,11 @@ export const environment = {
       verifyService: {
         verifyJSON: "/verify"
       },
+      peopleService: {
+        getPeople: "/person",
+        getPerson: "/person",
+        createPerson: "/person"
+      },
     }
   }
 };

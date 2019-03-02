@@ -6,6 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 `node_modules\.bin\json2ts src/assets/schema/standardProjectInformationSchema.json > src/app/model/project.ts --cwd src/assets/schema && node_modules\.bin\json2ts src/assets/schema/standardTaskSchema.json > src/app/model/task.ts --cwd src/assets/schema && node_modules\.bin\json2ts src/assets/schema/standardTeamSchema.json > src/app/model/team.ts --cwd src/assets/schema && node_modules\.bin\json2ts src/assets/schema/teamMemberObject.json > src/app/model/teamMember.ts --cwd src/assets/schema`
 
+`node_modules/.bin/json2ts src/assets/schema/standardProjectInformationSchema.json > src/app/model/project.ts --cwd src/assets/schema && node_modules/.bin/json2ts src/assets/schema/standardTaskSchema.json > src/app/model/task.ts --cwd src/assets/schema && node_modules/.bin/json2ts src/assets/schema/standardTeamSchema.json > src/app/model/team.ts --cwd src/assets/schema && node_modules/.bin/json2ts src/assets/schema/teamMemberObject.json > src/app/model/teamMember.ts --cwd src/assets/schema`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

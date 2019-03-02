@@ -24,6 +24,18 @@
           </tbody>
         </table>
       </div>
+      <h3>Team</h3>
+      <div class="">
+        <table class="table table-user-information">
+          <tbody>
+            <tr *ngFor="let role of this.project?.team.teamRoleList">
+              <td>{{role.teamRole}}:</td>
+              <td><button (click)="this.editRole(role)">{{role.teamMembersInRole.length}} Members</button></td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="col-xl-8" style="padding-top:10px">
       <div *ngFor="let process of project?.processesArray" class="row">

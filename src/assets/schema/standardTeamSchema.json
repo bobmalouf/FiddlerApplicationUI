@@ -5,26 +5,7 @@
 	"description": "Basic team structure for a project",
 	"type": "object",
 	"additionalProperties": false,
-	"required": [
-		"teamID",
-		"teamTitle"
-	],
 	"properties": {
-		"teamId": {
-			"description": "A unique identifier for a team",
-			"type": "string",
-			"$comment": "This is a GUID, generated when a team is instantiated."
-		},
-		"teamTitle": {
-			"description": "Title of the team",
-			"type": "string",
-			"$comment": "This value is defined during creation of a team template."
-		},
-		"teamDescription": {
-			"description": "Description of the team",
-			"type": "string",
-			"$comment": "This value is defined during creation of a team template."
-		},
 		"teamRoleList": {
 			"description": "List of team roles and people assigned to that role",
 			"type": "array",

@@ -10,18 +10,6 @@
  */
 export interface ProjectTeam {
   /**
-   * A unique identifier for a team
-   */
-  teamId?: string;
-  /**
-   * Title of the team
-   */
-  teamTitle: string;
-  /**
-   * Description of the team
-   */
-  teamDescription?: string;
-  /**
    * List of team roles and people assigned to that role
    */
   teamRoleList?: TeamRoleObject[];
