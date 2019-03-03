@@ -32,6 +32,23 @@ export class ProjectService {
     roleIndex + '/add', personId);
     // return of(null);
   }
+
+  public removePersonFromRole(projectId: String, roleIndex: number, personId: String): Observable<ProjectTeam> {
+    return this.httpService.post<ProjectTeam>(environment.apiConfig.serviceEndpoints.projectService.getProject + '/' + projectId + '/team/' + 
+    roleIndex + '/remove', personId);
+    // return of(null);
+  }
+
+  public addRole(projectId: String, roleName: String): Observable<ProjectTeam> {
+    return this.httpService.post<ProjectTeam>(environment.apiConfig.serviceEndpoints.projectService.getProject + '/' + projectId + environment.apiConfig.serviceEndpoints.teamService.addRole, roleName);
+    // return of(null);
+  }
+  public removeRole(projectId: String, roleIndex: number): Observable<ProjectTeam> {
+    return this.httpService.post<ProjectTeam>(environment.apiConfig.serviceEndpoints.projectService.getProject + '/' + projectId + '/team/' + 
+    roleIndex + '/remove', null);
+    // return of(null);
+  }
+
   public updateTask(task: Task, projectId: String, processId: number, taskId: number): Observable<Task> {
     console.log(projectId + ' - ' + processId + ' = ' + taskId)
     console.log(task)

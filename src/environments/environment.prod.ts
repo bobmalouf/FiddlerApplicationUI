@@ -14,7 +14,8 @@ export const environment = {
       teamService: {
         getTeam: "/team",
         getTeams: "/team",
-        createTeam: "/team"
+        createTeam: "/team",
+        addRole: "/team/role/add"
       },
       peopleService: {
         getPeople: "/person",

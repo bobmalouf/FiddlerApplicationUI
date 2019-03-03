@@ -15,6 +15,12 @@ export const environment = {
       verifyService: {
         verifyJSON: "/verify"
       },
+      teamService: {
+        getTeam: "/team",
+        getTeams: "/team",
+        createTeam: "/team",
+        addRole: "/team/role/add"
+      },
       peopleService: {
         getPeople: "/person",
         getPerson: "/person",

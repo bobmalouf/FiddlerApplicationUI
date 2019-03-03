@@ -3,17 +3,20 @@
 
 </div>
 <div class="modal-body">
-    <h6 *ngFor="let person of this.teamMembers">{{person.teamMemberName}}</h6>
-    <button *ngIf="!this.addMode" (click)="this.addMode = true">+</button>
+  <table>
+    <tr><th>Name</th></tr>
+<tr *ngFor="let person of this.teamMembers"><td>{{person.teamMemberName}}</td></tr>
+  </table>
+    <button *ngIf="!this.addMode" (click)="this.addMode = true">+ Add</button>
     <div *ngIf="this.addMode"  ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{this.selectedPerson ? this.selectedPerson.teamMemberName : "Select Person"}}</button>
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{this.selectedPerson ? this.selectedPerson.teamMemberName : "Select Person"}}</button> <button *ngIf="this.selectedPerson" (click)="this.addPerson(this.selectedPerson)">Save</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
-          <button (click)="this.selectedPerson = people" *ngFor="let people of this.allPeople" class="dropdown-item">{{people.teamMemberName}}</button>
+          <button (click)="this.selectedPerson = person" *ngFor="let person of this.allPeople" class="dropdown-item">{{person.teamMemberName}}</button>
         </div>
       </div>
 
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="this.closeModal()">Cancel</button>
-  <button type="button" class="btn btn-primary" (click)="this.saveModal()">Complete Task</button>
+  <button type="button" class="btn btn-danger" (click)="this.removeRole()">Remove Role</button>
+  <!-- <button type="button" class="btn btn-primary" (click)="this.saveModal()">Complete Task</button> -->
 </div>

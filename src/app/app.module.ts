@@ -14,6 +14,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RoleDetailComponent } from './home/role-detail/role-detail.component';
 import { PeopleComponent } from './people/people.component';
 import { NewPersonComponent } from './people/new-person/new-person.component';
+import { AddRoleComponent } from './home/add-role/add-role.component';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { NewPersonComponent } from './people/new-person/new-person.component';
     HomeComponent,
     ProjectDetailComponent,
     NewProjectComponent,
-    TaskDetailComponent, RoleDetailComponent, PeopleComponent, NewPersonComponent  ],
+    TaskDetailComponent, RoleDetailComponent, PeopleComponent, NewPersonComponent, AddRoleComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,6 +33,6 @@ import { NewPersonComponent } from './people/new-person/new-person.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [TaskDetailComponent,RoleDetailComponent, NewPersonComponent]
+  entryComponents: [TaskDetailComponent,RoleDetailComponent, NewPersonComponent, AddRoleComponent]
 })
 export class AppModule { }

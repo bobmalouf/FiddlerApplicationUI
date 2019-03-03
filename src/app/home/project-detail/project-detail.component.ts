@@ -10,6 +10,7 @@ import { AlertType } from 'src/app/shared/enum/alert-type.enum';
 import { TeamRoleObject } from 'src/app/model/team';
 import { RoleDetailComponent } from '../role-detail/role-detail.component';
 import { TeamMember } from 'src/app/model/teamMember';
+import { AddRoleComponent } from '../add-role/add-role.component';
 
 @Component({
   selector: 'app-project-detail',
@@ -35,14 +36,14 @@ export class ProjectDetailComponent implements OnInit {
   }
   private getProject(): void {
     this.projectService.getProject(this.router.url.split("/")[2]).subscribe(a => {
-      if(!this.project || this.project.projectId !== a.projectId){
+      if (!this.project || this.project.projectId !== a.projectId) {
         a.projectStatus == 'Closed' ? this.projectClosed = true : this.projectClosed = false;
       }
       this.project = a;
-      if(!this.projectClosed && a.projectStatus == 'Closed'){
+      if (!this.projectClosed && a.projectStatus == 'Closed') {
         location.reload();
       }
-    
+
     });
   }
 
@@ -66,23 +67,32 @@ export class ProjectDetailComponent implements OnInit {
 
     })
   }
+
+
   public editRole(teamRoleObject: TeamRoleObject): void {
     let ref = this.modal.open(RoleDetailComponent);
     ref.componentInstance.teamRoleObject = teamRoleObject;
+    ref.componentInstance.project = this.project;
     ref.componentInstance.ref = ref;
-    ref.result.then(a => {
-      let roleIndex = this.project.team.teamRoleList[this.project.team.teamRoleList.indexOf(teamRoleObject)]
-      this.projectService.addPersonToRole(this.project.projectId,
-        this.project.team.teamRoleList.indexOf(roleIndex), (a as TeamMember).teamMemberID).subscribe(() => {
-          this.getProject();
-          this.alertService.createAlert(AlertType.Primary, "Task Updated", true);
-          this.refresh.emit(true);
+    ref.result.then(() => {
+      this.getProject();
+      this.refresh.emit(true);
 
-        }, () => {
-          this.alertService.createAlert(AlertType.Danger, "Error in updating task", true);
-
-        })
     }, () => {
+      // this.alertService.createAlert(AlertType.Danger, "Error in updating task", true);
+
+    })
+  }
+  public addRole(): void {
+    let ref = this.modal.open(AddRoleComponent);
+    ref.componentInstance.project = this.project;
+    ref.componentInstance.ref = ref;
+    ref.result.then(() => {
+      this.getProject();
+      this.refresh.emit(true);
+
+    }, () => {
+      // this.alertService.createAlert(AlertType.Danger, "Error in updating task", true);
 
     })
   }
