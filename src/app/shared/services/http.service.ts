@@ -13,6 +13,9 @@ export class HttpService {
   public get<T>(url: string): Observable<T> {
     return this.httpClient.get<T>(environment.apiConfig.restURI +  url);
   }
+  public getRawText(url: string): Observable<any> {
+    return this.httpClient.get(environment.apiConfig.restURI +  url,  {responseType: 'text'});
+  }
   public post<T>(url: string, body: any): Observable<T> {
     return this.httpClient.post<T>(environment.apiConfig.restURI +  url, body);
   }

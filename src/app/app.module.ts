@@ -15,6 +15,8 @@ import { RoleDetailComponent } from './home/role-detail/role-detail.component';
 import { PeopleComponent } from './people/people.component';
 import { NewPersonComponent } from './people/new-person/new-person.component';
 import { AddRoleComponent } from './home/add-role/add-role.component';
+import { AddAttachmentComponent } from './home/add-attachment/add-attachment.component';
+import { FileUploadModule, FileSelectDirective } from 'ng2-file-upload';
 
 
 @NgModule({
@@ -23,7 +25,7 @@ import { AddRoleComponent } from './home/add-role/add-role.component';
     HomeComponent,
     ProjectDetailComponent,
     NewProjectComponent,
-    TaskDetailComponent, RoleDetailComponent, PeopleComponent, NewPersonComponent, AddRoleComponent  ],
+    TaskDetailComponent, RoleDetailComponent, PeopleComponent, NewPersonComponent, AddRoleComponent, AddAttachmentComponent , FileSelectDirective ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,6 +35,6 @@ import { AddRoleComponent } from './home/add-role/add-role.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [TaskDetailComponent,RoleDetailComponent, NewPersonComponent, AddRoleComponent]
+  entryComponents: [TaskDetailComponent,RoleDetailComponent, NewPersonComponent, AddRoleComponent, AddAttachmentComponent]
 })
 export class AppModule { }

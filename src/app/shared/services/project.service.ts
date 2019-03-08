@@ -49,6 +49,12 @@ export class ProjectService {
     // return of(null);
   }
 
+  public addDocument(projectId: String, file: File): Observable<ProjectInformation> {
+    var payload = new FormData();
+    payload.append("file", file);
+    return this.httpService.post<ProjectInformation>(environment.apiConfig.serviceEndpoints.projectService.getProject + '/' + projectId + '/addDocument', payload);
+  }
+
   public updateTask(task: Task, projectId: String, processId: number, taskId: number): Observable<Task> {
     console.log(projectId + ' - ' + processId + ' = ' + taskId)
     console.log(task)

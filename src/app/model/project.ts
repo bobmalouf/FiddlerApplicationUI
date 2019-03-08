@@ -35,6 +35,10 @@ export interface ProjectInformation {
    */
   created?: string;
   /**
+   * List of attachments
+   */
+  attachments?: string[];
+  /**
    * Set of categorized subprocesses
    */
   processesArray?: {

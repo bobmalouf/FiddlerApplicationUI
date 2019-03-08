@@ -22,6 +22,9 @@ export const environment = {
         getPerson: "/person",
         createPerson: "/person"
       },
+      fileService: {
+        getFile: "/file/",
+      },
     }
   }
 };

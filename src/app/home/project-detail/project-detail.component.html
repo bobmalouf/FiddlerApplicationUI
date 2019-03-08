@@ -37,6 +37,22 @@
         </table>
         <button (click)="this.addRole()">Add New Role</button>
       </div>
+      <h3 style="padding-top: 20px">Attachments</h3> 
+      <div class="">
+        <table class="table table-user-information">
+            <!-- <td>{{this.project?.attachments.length}} Documents</td> -->
+
+          <tbody>
+            <tr *ngFor="let attachment of this.fileNames;let i = index">
+              <!-- <td><button  >Add Document</button></td> -->
+              <a style="cursor: pointer;" [href]="this.docLink(attachment.id)" >{{attachment.name}}</a>
+            </tr>
+            
+          </tbody>
+          
+        </table>
+        <button (click)="this.addAttachment()">Add Attachment</button>
+      </div>
     </div>
     <div class="col-xl-8" style="padding-top:10px">
       <div *ngFor="let process of project?.processesArray" class="row">
@@ -60,5 +76,6 @@
       </div>
 
     </div>
+    
   </div>
 </div>

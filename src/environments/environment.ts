@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiConfig: {
-    restURI: "localhost:8080/api",
+    restURI: "/api",
     serviceEndpoints: {
       projectService: {
         getProject: "/project",
@@ -25,6 +25,9 @@ export const environment = {
         getPeople: "/person",
         getPerson: "/person",
         createPerson: "/person"
+      },
+      fileService: {
+        getFile: "/file/",
       },
     }
   }

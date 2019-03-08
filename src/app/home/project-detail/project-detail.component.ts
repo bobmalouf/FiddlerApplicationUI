@@ -11,6 +11,12 @@ import { TeamRoleObject } from 'src/app/model/team';
 import { RoleDetailComponent } from '../role-detail/role-detail.component';
 import { TeamMember } from 'src/app/model/teamMember';
 import { AddRoleComponent } from '../add-role/add-role.component';
+import { AddAttachmentComponent } from '../add-attachment/add-attachment.component';
+import { environment } from 'src/environments/environment';
+import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
+import { FileService } from 'src/app/shared/services/file.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-project-detail',
@@ -23,10 +29,11 @@ export class ProjectDetailComponent implements OnInit {
   @Input() project: ProjectInformation;
   @Output() refresh = new EventEmitter<boolean>();
   private projectClosed: boolean;
+  public fileNames = [];
 
-  constructor(private modal: NgbModal,
+  constructor(private sanitizer:DomSanitizer, private modal: NgbModal,
     private projectService: ProjectService,
-    public ui: UiHelperService, private router: Router, private route: ActivatedRoute, private alertService: AlertService) { }
+    public ui: UiHelperService, private router: Router, private route: ActivatedRoute, private alertService: AlertService, private fileService: FileService) { }
 
   ngOnInit(): void {
     this.getProject();
@@ -43,6 +50,7 @@ export class ProjectDetailComponent implements OnInit {
       if (!this.projectClosed && a.projectStatus == 'Closed') {
         location.reload();
       }
+      this.getFileName(this.project.attachments);
 
     });
   }
@@ -95,6 +103,33 @@ export class ProjectDetailComponent implements OnInit {
       // this.alertService.createAlert(AlertType.Danger, "Error in updating task", true);
 
     })
+  }
+  public addAttachment(): void {
+    let ref = this.modal.open(AddAttachmentComponent);
+    ref.componentInstance.project = this.project;
+    ref.componentInstance.ref = ref;
+    ref.result.then(() => {
+      this.getProject();
+      this.refresh.emit(true);
+
+    }, () => {
+      // this.alertService.createAlert(AlertType.Danger, "Error in updating task", true);
+
+    })
+  }
+  public docLink(fileId: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(environment.apiConfig.restURI + environment.apiConfig.serviceEndpoints.fileService.getFile + fileId);
+  }
+  public getFileName(fileId: string[]): void{
+    this.fileNames = [];
+    let incrementor = 0;
+    for (const file of fileId) {
+      this.fileService.getFileName(file.toString()).subscribe(a => {
+        console.log("sdf")
+        this.fileNames.push(incrementor, 0, {id: file, name: a})
+        incrementor++;
+      })
+    }
   }
 
 }
