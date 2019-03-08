@@ -4,7 +4,7 @@ import { HttpService } from './http.service';
 import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {  ProjectTeam} from "src/app/model/team";
+import { ProjectTeam } from "src/app/model/team";
 
 
 @Injectable({
@@ -17,6 +17,14 @@ export class FileService {
 
   public getFileName(fileId: string): Observable<any> {
     return this.httpService.getRawText(environment.apiConfig.serviceEndpoints.fileService.getFile + fileId + '/name');
-    }
-  
+  }
+
+  public removeFile(fileId: string): Observable<boolean> {
+    return this.httpService.get<boolean>(environment.apiConfig.serviceEndpoints.fileService.getFile + fileId + '/remove');
+  }
+
+  public getFile(fileId: string): Observable<any> {
+    return this.httpService.getRawText(environment.apiConfig.serviceEndpoints.fileService.getFile + fileId);
+  }
+
 }

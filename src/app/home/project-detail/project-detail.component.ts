@@ -33,10 +33,11 @@ export class ProjectDetailComponent implements OnInit {
 
   constructor(private sanitizer:DomSanitizer, private modal: NgbModal,
     private projectService: ProjectService,
-    public ui: UiHelperService, private router: Router, private route: ActivatedRoute, private alertService: AlertService, private fileService: FileService) { }
+    public ui: UiHelperService, private router: Router, private route: ActivatedRoute,
+    private alertService: AlertService, private fileService: FileService) { }
 
   ngOnInit(): void {
-    this.getProject();
+    // this.getProject();
     this.route.params.subscribe(() => {
       this.getProject();
     });
@@ -125,11 +126,17 @@ export class ProjectDetailComponent implements OnInit {
     let incrementor = 0;
     for (const file of fileId) {
       this.fileService.getFileName(file.toString()).subscribe(a => {
-        console.log("sdf")
-        this.fileNames.push(incrementor, 0, {id: file, name: a})
+        this.fileNames.push({id: file, name: a})
         incrementor++;
       })
     }
+  }
+
+  public removeDocument(fileId: string): void {
+    this.projectService.removeDocument(this.project.projectId, fileId).subscribe(a => {
+      this.alertService.createAlert(AlertType.Success, 'File Deleted', true);
+      this.getProject();
+    })
   }
 
 }
