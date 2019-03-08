@@ -25,13 +25,14 @@ import { FileUploadModule, FileSelectDirective } from 'ng2-file-upload';
     HomeComponent,
     ProjectDetailComponent,
     NewProjectComponent,
-    TaskDetailComponent, RoleDetailComponent, PeopleComponent, NewPersonComponent, AddRoleComponent, AddAttachmentComponent , FileSelectDirective ],
+    TaskDetailComponent, RoleDetailComponent, PeopleComponent, NewPersonComponent, AddRoleComponent, AddAttachmentComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule, FormsModule
+    NgbModule, FormsModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent],
